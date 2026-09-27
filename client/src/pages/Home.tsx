@@ -93,6 +93,9 @@ export default function Home() {
   return (
     <main id="top" className={`minimal-shell ${quietMode ? "quiet-mode" : ""}`} style={shellStyle} onMouseMove={(event) => setCursor({ x: event.clientX, y: event.clientY })}>
       <div className="cursor-spotlight" />
+      <div className="starfield" aria-hidden="true" />
+      <div className="cosmic-dust cosmic-dust-one" aria-hidden="true" />
+      <div className="cosmic-dust cosmic-dust-two" aria-hidden="true" />
       <header className={`minimal-nav ${scrolled ? "nav-scrolled" : ""}`}>
         <div className="nav-inner minimal-nav-inner">
           <Logo inverted={scrolled} />
@@ -104,6 +107,8 @@ export default function Home() {
       </header>
 
       <section className="minimal-hero">
+        <span className="shooting-star shooting-star-one" aria-hidden="true" />
+        <span className="shooting-star shooting-star-two" aria-hidden="true" />
         <div className="hero-hairline" />
         <div className="page-width minimal-hero-grid">
           <div className="minimal-hero-copy">
@@ -115,7 +120,7 @@ export default function Home() {
           </div>
           <div className="minimal-hero-art">
             <div className="hero-art-label label-top"><span>PS / 2026</span><span>01—03</span></div>
-            <div className="hero-orbit-art"><div className="art-circle art-circle-back" /><div className="art-circle art-circle-main" /><div className="art-ring ring-a" /><div className="art-ring ring-b" /><div className="art-crosshair" /><div className="art-dot dot-a" /><div className="art-dot dot-b" /><div className="art-number">01</div><img src="/manus-storage/plansphere-hero_85278bb0.jpg" alt="Abstract event energy" /></div>
+            <div className="hero-orbit-art"><div className="art-circle art-circle-back" /><div className="art-circle art-circle-main" /><div className="art-ring ring-a" /><div className="art-ring ring-b" /><div className="art-ring ring-c" /><div className="art-crosshair" /><div className="art-dot dot-a" /><div className="art-dot dot-b" /><div className="art-star star-a" /><div className="art-star star-b" /><div className="art-number">01</div><img src="/manus-storage/plansphere-hero_85278bb0.jpg" alt="Abstract event energy" /></div>
             <div className="hero-art-label label-bottom"><span>EVERYTHING<br />IN MOTION</span><span className="tiny-arrow">↗</span></div>
           </div>
         </div>

@@ -39,6 +39,13 @@ const events = [
   { name: "Intercollege Cup", type: "Live sports / Kochi", date: "18—20 APR", tone: "event-photo-three" },
 ];
 
+const sphereFeatures = [
+  { eyebrow: "01 / DISCOVER", title: "Explore", copy: "Find the moments worth showing up for.", icon: "✦" },
+  { eyebrow: "02 / REGISTER", title: "Register", copy: "One clean flow from interest to entry.", icon: "◌" },
+  { eyebrow: "03 / GO LIVE", title: "Go live", copy: "Scores, brackets, and energy in real time.", icon: "↗" },
+  { eyebrow: "04 / CERTIFY", title: "Remember", copy: "Turn attendance into something that lasts.", icon: "✳" },
+];
+
 function go(id: string) {
   document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 }
@@ -61,6 +68,7 @@ export default function Home() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [quietMode, setQuietMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeFeature, setActiveFeature] = useState(0);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -85,6 +93,11 @@ export default function Home() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("keydown", onKey);
     };
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setActiveFeature((feature) => (feature + 1) % sphereFeatures.length), 4200);
+    return () => window.clearInterval(timer);
   }, []);
 
   const comingSoon = (label: string) => toast(`${label} is coming soon`, { description: "This preview focuses on the public Plansphere experience." });
@@ -120,7 +133,7 @@ export default function Home() {
           </div>
           <div className="minimal-hero-art">
             <div className="hero-art-label label-top"><span>PS / 2026</span><span>01—03</span></div>
-            <div className="hero-orbit-art"><div className="art-circle art-circle-back" /><div className="art-circle art-circle-main" /><div className="art-ring ring-a" /><div className="art-ring ring-b" /><div className="art-ring ring-c" /><div className="art-crosshair" /><div className="art-dot dot-a" /><div className="art-dot dot-b" /><div className="art-star star-a" /><div className="art-star star-b" /><div className="art-number">01</div><img src="/manus-storage/plansphere-hero_85278bb0.jpg" alt="Abstract event energy" /></div>
+            <div className="hero-orbit-art" role="button" tabIndex={0} aria-label="Rotate through Plansphere features" style={{ "--active-feature": activeFeature } as CSSProperties} onClick={() => setActiveFeature((feature) => (feature + 1) % sphereFeatures.length)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") setActiveFeature((feature) => (feature + 1) % sphereFeatures.length); }}><div className="art-circle art-circle-back" /><div className="art-circle art-circle-main" /><div className="art-ring ring-a" /><div className="art-ring ring-b" /><div className="art-ring ring-c" /><div className="art-crosshair" /><div className="art-dot dot-a" /><div className="art-dot dot-b" /><div className="art-star star-a" /><div className="art-star star-b" /><div className="art-number">0{activeFeature + 1}</div><img src="/manus-storage/plansphere-hero_85278bb0.jpg" alt="Abstract event energy" />{sphereFeatures.map((feature, index) => <div key={feature.eyebrow} className={`sphere-feature feature-${index} ${activeFeature === index ? "feature-active" : ""}`}><span className="feature-icon">{feature.icon}</span><span><b>{feature.eyebrow}</b><strong>{feature.title}</strong><small>{feature.copy}</small></span></div>)}<div className="sphere-rotate-hint"><span>click to rotate</span><ArrowRight size={13} /></div></div>
             <div className="hero-art-label label-bottom"><span>EVERYTHING<br />IN MOTION</span><span className="tiny-arrow">↗</span></div>
           </div>
         </div>

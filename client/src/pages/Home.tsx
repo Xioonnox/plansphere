@@ -40,10 +40,9 @@ const events = [
 ];
 
 const sphereFeatures = [
-  { eyebrow: "01 / DISCOVER", title: "Explore", copy: "Find the moments worth showing up for.", icon: "✦" },
-  { eyebrow: "02 / REGISTER", title: "Register", copy: "One clean flow from interest to entry.", icon: "◌" },
-  { eyebrow: "03 / GO LIVE", title: "Go live", copy: "Scores, brackets, and energy in real time.", icon: "↗" },
-  { eyebrow: "04 / CERTIFY", title: "Remember", copy: "Turn attendance into something that lasts.", icon: "✳" },
+  { eyebrow: "01 / CONFIGURE", title: "Register & configure", copy: "Fest setup, solo or team forms, pricing, and capacity — in one flow.", icon: "✦" },
+  { eyebrow: "02 / RUN LIVE", title: "Run live operations", copy: "Offline QR check-in, meal scans, volunteer shifts, and live scoring.", icon: "◌" },
+  { eyebrow: "03 / CERTIFY", title: "Results & certificates", copy: "Publish results, auto-generate certificates, and verify without login.", icon: "✳" },
 ];
 
 function go(id: string) {
@@ -133,7 +132,7 @@ export default function Home() {
           </div>
           <div className="minimal-hero-art">
             <div className="hero-art-label label-top"><span>PS / 2026</span><span>01—03</span></div>
-            <div className="hero-orbit-art" role="button" tabIndex={0} aria-label="Rotate through Plansphere features" style={{ "--active-feature": activeFeature } as CSSProperties} onClick={() => setActiveFeature((feature) => (feature + 1) % sphereFeatures.length)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") setActiveFeature((feature) => (feature + 1) % sphereFeatures.length); }}><div className="art-circle art-circle-back" /><div className="art-circle art-circle-main" /><div className="art-ring ring-a" /><div className="art-ring ring-b" /><div className="art-ring ring-c" /><div className="art-crosshair" /><div className="art-dot dot-a" /><div className="art-dot dot-b" /><div className="art-star star-a" /><div className="art-star star-b" /><div className="art-number">0{activeFeature + 1}</div><img src="/manus-storage/plansphere-hero_85278bb0.jpg" alt="Abstract event energy" />{sphereFeatures.map((feature, index) => <div key={feature.eyebrow} className={`sphere-feature feature-${index} ${activeFeature === index ? "feature-active" : ""}`}><span className="feature-icon">{feature.icon}</span><span><b>{feature.eyebrow}</b><strong>{feature.title}</strong><small>{feature.copy}</small></span></div>)}<div className="sphere-rotate-hint"><span>click to rotate</span><ArrowRight size={13} /></div></div>
+            <div className="hero-orbit-art" role="button" tabIndex={0} aria-label="Rotate through Plansphere features" style={{ "--active-feature": activeFeature } as CSSProperties} onClick={() => setActiveFeature((feature) => (feature + 1) % sphereFeatures.length)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") setActiveFeature((feature) => (feature + 1) % sphereFeatures.length); }}><div className="art-circle art-circle-back" /><div className="art-circle art-circle-main" /><div className="art-ring ring-a" /><div className="art-ring ring-b" /><div className="art-ring ring-c" /><div className="art-crosshair" /><div className="art-dot dot-a" /><div className="art-dot dot-b" /><div className="art-star star-a" /><div className="art-star star-b" /><div className="art-number">0{activeFeature + 1}</div><img src="/manus-storage/plansphere-hero_85278bb0.jpg" alt="Abstract event energy" />{sphereFeatures.map((feature, index) => <button type="button" key={feature.eyebrow} className={`sphere-feature feature-${index} ${activeFeature === index ? "feature-active" : ""}`} aria-label={`Show ${feature.title}`} onClick={(event) => { event.stopPropagation(); setActiveFeature(index); }}><span className="feature-icon">{feature.icon}</span><span><b>{feature.eyebrow}</b><strong>{feature.title}</strong><small>{feature.copy}</small></span></button>)}<div className="sphere-rotate-hint"><span>click to rotate</span><ArrowRight size={13} /></div></div>
             <div className="hero-art-label label-bottom"><span>EVERYTHING<br />IN MOTION</span><span className="tiny-arrow">↗</span></div>
           </div>
         </div>
